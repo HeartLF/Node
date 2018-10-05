@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+    <script>
+        async function getJson(url) {
+            const JSon = await ajax(url);
+            document.getElementById('box').innerHTML += JSon;
+        }
+
+
+        function ajax(url) {
+            return new Promise((resolve, reject) => {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", url);
+                xhr.onload = function() {
+                    resolve(this.responseText);
+                }
+                xhr.send();
+            })
+        }
+        getJson('http://127.0.0.1:3000/v2/movie/top250')
+            // const getJSON = function(url) {
+            //     const promise = new Promise(function(resolve, reject) {
+            //         const handler = function() {
+            //             if (this.readyState !== 4) {
+            //                 return;
+            //             }
+            //             if (this.status === 200) {
+            //                 resolve(this.response);
+            //             } else {
+            //                 reject(new Error(this.statusText));
+            //             }
+            //         };
+            //         const client = new XMLHttpRequest();
+            //         client.open("GET", url);
+            //         client.onreadystatechange = handler;
+            //         client.send();
+
+        //     });
+
+        //     return promise;
+        // };
+
+        // getJSON("http://127.0.0.1:3000/v2/movie/top250").then(function(json) {
+        //     document.getElementById('box').innerHTML += json;
+        // }, function(error) {
+        //     console.log('出错了', error);
+        // });
+    </script>
+</body>
+
+</html>
